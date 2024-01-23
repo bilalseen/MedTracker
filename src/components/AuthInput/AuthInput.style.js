@@ -1,16 +1,21 @@
 import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#ddd",
-        width: 250,
-        paddingVertical: 10,
-        paddingHorizontal: 10,
-        borderRadius: 10,
-        borderColor: "black",
-        borderSize: 2,
+  input: {
+    width: 300,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    borderColor: "#EFEFEF",
+    borderWidth: 1,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    input: {
-        textAlign: "center"
-    }
-})
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 5,
+  },
+});
