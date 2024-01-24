@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import styles from "./SignUp.style"
+import { View } from "react-native";
+import React from "react";
+import styles from "./SignUp.style";
+import SignUpForm from "../../components/SignUpForm";
 const SignUp = () => {
-    return (
-        <View style={styles.container}>
-            <Text>SignUp Pagee!!!</Text>
-        </View>
-    )
-}
+  return (
+    <View style={styles.container}>
+      <SignUpForm gap={25} />
+    </View>
+  );
+};
 
-export default SignUp
+export default SignUp;
