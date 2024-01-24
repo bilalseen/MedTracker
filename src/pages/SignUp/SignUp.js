@@ -1,9 +1,16 @@
-import { View, Text, ImageBackground, Image } from "react-native";
+import {
+  View,
+  Text,
+  ImageBackground,
+  Image,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React from "react";
 import styles from "./SignUp.style";
 import SignUpForm from "../../components/SignUpForm";
 import CustomLine from "../../components/CustomLine";
 import GoogleAuthButton from "../../components/GoogleAuthButton";
+import RegisterButton from "../../components/RegisterButton";
 const SignUp = () => {
   return (
     <ImageBackground
@@ -29,6 +36,7 @@ const SignUp = () => {
           width={300}
         />
         <GoogleAuthButton />
+        <RegisterButton text={"Do you have an account? Register"} />
       </View>
     </ImageBackground>
   );
