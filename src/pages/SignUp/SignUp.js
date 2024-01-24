@@ -18,7 +18,7 @@ const SignUp = () => {
           borderColor={"gray"}
           width={300}
         />
-        <GoogleAuthButton />
+        <GoogleAuthButton text={"Sign up"} />
       </View>
     </ImageBackground>
   );
