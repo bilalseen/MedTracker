@@ -25,7 +25,7 @@ const SignUp = () => {
           />
           <Text style={styles.headerText}>Welcome to MedTracker</Text>
           <Text style={styles.titleText}>
-            If you're ready for this travel. Let's go
+            Ready for a healthier you? Let's start now!
           </Text>
         </View>
         <SignUpForm gap={25} />
@@ -35,7 +35,7 @@ const SignUp = () => {
           borderColor={"gray"}
           width={300}
         />
-        <GoogleAuthButton />
+        <GoogleAuthButton text={"Sign up"} />
         <RegisterButton text={"Do you have an account? Register"} />
       </View>
     </ImageBackground>
