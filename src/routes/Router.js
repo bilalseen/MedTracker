@@ -4,11 +4,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigation from "../routes/TabNavigation";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import FIREBASE_AUTH from "../services/config";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Stack = createNativeStackNavigator();
 
 function Router() {
   const [user, setUser] = useState(null);
+
+  onAuthStateChanged(FIREBASE_AUTH, (authUser) => {
+    setUser(authUser);
+  });
   return (
     <NavigationContainer>
       {user ? (
