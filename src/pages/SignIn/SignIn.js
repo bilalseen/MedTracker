@@ -6,7 +6,10 @@ import CustomLine from "../../components/CustomLine";
 import GoogleAuthButton from "../../components/GoogleAuthButton";
 import RegisterButton from "../../components/RegisterButton";
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
+  const navigateToSignUp = () => {
+    navigation.navigate("SignUp");
+  };
   return (
     <ImageBackground
       source={require("../../../assets/background-image-opacity-15.png")}
@@ -31,7 +34,10 @@ const SignIn = () => {
           width={300}
         />
         <GoogleAuthButton text={"Sign in"} />
-        <RegisterButton text={"Don't have an account? Sign Up"} />
+        <RegisterButton
+          text={"Don't have an account? Sign Up"}
+          onPress={navigateToSignUp}
+        />
       </View>
     </ImageBackground>
   );

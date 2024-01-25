@@ -11,7 +11,10 @@ import SignUpForm from "../../components/SignUpForm";
 import CustomLine from "../../components/CustomLine";
 import GoogleAuthButton from "../../components/GoogleAuthButton";
 import RegisterButton from "../../components/RegisterButton";
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
+  const navigateToSignIn = () => {
+    navigation.navigate("SignIn");
+  };
   return (
     <ImageBackground
       source={require("../../../assets/background-image-opacity-15.png")}
@@ -36,7 +39,10 @@ const SignUp = () => {
           width={300}
         />
         <GoogleAuthButton text={"Sign up"} />
-        <RegisterButton text={"Do you have an account? Register"} />
+        <RegisterButton
+          text={"Do you have an account? Register"}
+          onPress={navigateToSignIn}
+        />
       </View>
     </ImageBackground>
   );
