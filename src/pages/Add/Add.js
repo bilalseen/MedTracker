@@ -33,7 +33,13 @@ const Add = () => {
         placeholder={"Medicine name"}
         onChange={(text) => setInputText(text)}
       />
-      <CustomCalendar onDateChange={handleDateChange} />
+      <CustomCalendar
+        onDateChange={handleDateChange}
+        selectedDate={selectedDate}
+        today={today}
+        width={375}
+        height={375}
+      />
       <CustomButton
         buttonText={"Save"}
         backgroundColor={buttonColor}
