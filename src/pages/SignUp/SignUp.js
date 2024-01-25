@@ -36,7 +36,7 @@ const SignUp = ({ navigation }) => {
           text={"Or"}
           textColor={"gray"}
           borderColor={"gray"}
-          width={300}
+          width={250}
         />
         <GoogleAuthButton text={"Sign up"} />
         <RegisterButton
