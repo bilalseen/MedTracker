@@ -19,7 +19,12 @@ const MedCard = ({ item }) => {
   return (
     <GestureHandlerRootView>
       <Swipeable renderLeftActions={swipteLeft}>
-        <View style={styles.container}>
+        <View
+          style={[
+            styles.container,
+            { backgroundColor: `${item.outOfDate ? "red" : "green"}` },
+          ]}
+        >
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.date}>{item.expirationDate}</Text>
         </View>
