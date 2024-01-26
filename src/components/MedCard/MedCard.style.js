@@ -2,13 +2,13 @@ import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
   container: {
-    width: 270,
-    height: 50,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    width: 300,
+    height: 70,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 8,
     backgroundColor: "green",
-    margin: 10,
+    margin: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
