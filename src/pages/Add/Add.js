@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, ToastAndroid } from "react-native";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 
@@ -27,11 +27,16 @@ const Add = () => {
     setSelectedDate(formattedDate);
   };
 
+  const addMedicine = () => {
+    ToastAndroid.show("Your medicine has been added!", ToastAndroid.SHORT);
+  };
+
   return (
     <View style={styles.container}>
       <InputBar
         placeholder={"Medicine name"}
         onChange={(text) => setInputText(text)}
+        value={inputText}
       />
       <CustomCalendar
         onDateChange={handleDateChange}
@@ -43,9 +48,7 @@ const Add = () => {
       <CustomButton
         buttonText={"Save"}
         backgroundColor={buttonColor}
-        onPress={() => {
-          console.log("Save button pressed");
-        }}
+        onPress={addMedicine}
       />
     </View>
   );
