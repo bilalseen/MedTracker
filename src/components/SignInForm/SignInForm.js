@@ -48,6 +48,8 @@ const SignInForm = ({ gap }) => {
             buttonText={"Sign In"}
             onPress={handleSubmit}
             backgroundColor="green"
+            width={240}
+            height={50}
           />
         </View>
       )}

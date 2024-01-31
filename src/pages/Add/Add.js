@@ -49,6 +49,8 @@ const Add = () => {
         buttonText={"Save"}
         backgroundColor={buttonColor}
         onPress={addMedicine}
+        width={240}
+        height={50}
       />
     </View>
   );

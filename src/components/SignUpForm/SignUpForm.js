@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import AuthInput from "../AuthInput";
 import CustomButton from "../CustomButton";
 import FIREBASE_AUTH from "../../services/config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const signUpUser = (values) => {
   const auth = FIREBASE_AUTH;
@@ -13,16 +13,27 @@ const signUpUser = (values) => {
     .then((userCredential) => {
       // Signed up
       const user = userCredential.user;
-      user.displayName = values.fullName;
-      console.log(user);
-      // ...
+      console.log(user.displayName);
+      updateProfileAndLog(user, values);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
+      // Handle error
     });
 };
+
+const updateProfileAndLog = async (user, values) => {
+  try {
+    await updateProfile(user, {
+      displayName: values.fullName,
+    });
+    console.log("Profil güncellendi:", user.displayName);
+  } catch (error) {
+    console.error("Profil güncelleme hatası:", error.message);
+  }
+};
+
 const SignUpForm = ({ gap }) => {
   const onSubmit = (values) => {
     signUpUser(values);
@@ -58,6 +69,8 @@ const SignUpForm = ({ gap }) => {
             buttonText={"Sign Up"}
             onPress={handleSubmit}
             backgroundColor="green"
+            width={240}
+            height={50}
           />
         </View>
       )}
