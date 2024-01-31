@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigation from "../routes/TabNavigation";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import EditProfile from "../pages/EditProfile";
 import FIREBASE_AUTH from "../services/config";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -22,6 +23,11 @@ function Router() {
           <Stack.Screen
             name="TabNavigation"
             component={TabNavigation}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfile}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
