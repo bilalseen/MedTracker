@@ -10,6 +10,10 @@ const SignIn = ({ navigation }) => {
   const navigateToSignUp = () => {
     navigation.navigate("SignUp");
   };
+
+  const navigateToPasswordReset = () => {
+    navigation.navigate("PasswordReset");
+  };
   return (
     <ImageBackground
       source={require("../../../assets/background-image-opacity-15.png")}
@@ -26,7 +30,7 @@ const SignIn = ({ navigation }) => {
             Ready to continue your health journey? Let's log in!
           </Text>
         </View>
-        <SignInForm gap={25} />
+        <SignInForm gap={25} onPress={navigateToPasswordReset} />
         <CustomLine
           text={"Or"}
           textColor={"gray"}
