@@ -6,4 +6,8 @@ export default styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 100,
   },
+  medFlatList: {
+    marginTop: 50,
+    paddingBottom: 50,
+  },
 });
