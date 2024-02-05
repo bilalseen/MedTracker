@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./SignInForm.style";
 import { Formik } from "formik";
 import AuthInput from "../AuthInput";
@@ -23,7 +23,7 @@ const signInUser = (values) => {
     });
 };
 
-const SignInForm = ({ gap }) => {
+const SignInForm = ({ gap, onPress }) => {
   const onSubmit = (values) => {
     signInUser(values);
   };
@@ -47,6 +47,9 @@ const SignInForm = ({ gap }) => {
             backgroundColor={"white"}
             borderColor={"#EFEFEF"}
           />
+          <TouchableOpacity onPress={onPress}>
+            <Text style={styles.passwordForgotText}>Forgot password?</Text>
+          </TouchableOpacity>
           <CustomButton
             buttonText={"Sign In"}
             onPress={handleSubmit}
