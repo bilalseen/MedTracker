@@ -3,6 +3,7 @@ import { View } from "react-native";
 import styles from "./SignInForm.style";
 import { Formik } from "formik";
 import AuthInput from "../AuthInput";
+import InputBar from "../InputBar";
 import CustomButton from "../CustomButton";
 import FIREBASE_AUTH from "../../services/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -30,19 +31,21 @@ const SignInForm = ({ gap }) => {
     <Formik initialValues={{ email: "", password: "" }} onSubmit={onSubmit}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View style={[styles.inputContainer, { gap: gap }]}>
-          <AuthInput
-            onChangeText={handleChange("email")}
+          <InputBar
+            onChange={handleChange("email")}
             onBlur={handleBlur("email")}
-            value={values.email}
             placeholder={"Email "}
             keyboardType={"email-address"}
+            backgroundColor={"white"}
+            borderColor={"#EFEFEF"}
           />
           <AuthInput
             onChangeText={handleChange("password")}
             onBlur={handleBlur("password")}
-            value={values.password}
             placeholder={"Password"}
             secureTextEntry={true}
+            backgroundColor={"white"}
+            borderColor={"#EFEFEF"}
           />
           <CustomButton
             buttonText={"Sign In"}

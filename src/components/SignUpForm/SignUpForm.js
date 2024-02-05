@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./SignUpForm.style";
 import { Formik } from "formik";
 import AuthInput from "../AuthInput";
+import InputBar from "../InputBar";
 import CustomButton from "../CustomButton";
 import FIREBASE_AUTH from "../../services/config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -45,25 +46,29 @@ const SignUpForm = ({ gap }) => {
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View style={[styles.inputContainer, { gap: gap }]}>
-          <AuthInput
-            onChangeText={handleChange("fullName")}
+          <InputBar
+            onChange={handleChange("fullName")}
             onBlur={handleBlur("fullName")}
             value={values.firstName}
             placeholder={"Full Name"}
+            backgroundColor={"white"}
+            borderColor={"#EFEFEF"}
           />
-          <AuthInput
-            onChangeText={handleChange("email")}
+          <InputBar
+            onChange={handleChange("email")}
             onBlur={handleBlur("email")}
-            value={values.email}
             placeholder={"Email "}
             keyboardType={"email-address"}
+            backgroundColor={"white"}
+            borderColor={"#EFEFEF"}
           />
           <AuthInput
             onChangeText={handleChange("password")}
             onBlur={handleBlur("password")}
-            value={values.password}
             placeholder={"Password"}
             secureTextEntry={true}
+            backgroundColor={"white"}
+            borderColor={"#EFEFEF"}
           />
           <CustomButton
             buttonText={"Sign Up"}
