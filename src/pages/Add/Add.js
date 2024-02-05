@@ -1,6 +1,9 @@
 import { View, ToastAndroid } from "react-native";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import { db, collection, addDoc } from "../../services/dbConfig";
+import FIREBASE_AUTH from "../../services/config";
+import { onAuthStateChanged } from "@firebase/auth";
 
 import styles from "./Add.style";
 
@@ -13,6 +16,31 @@ const Add = () => {
   const [inputText, setInputText] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const today = moment();
+
+  const [user, setUser] = useState(null);
+
+  onAuthStateChanged(FIREBASE_AUTH, (authUser) => {
+    setUser(authUser);
+  });
+
+  const addMedicine = async () => {
+    if (user) {
+      try {
+        const docRef = await addDoc(collection(db, user.uid), {
+          name: inputText,
+          date: selectedDate,
+          outOfDate: false,
+        });
+        setInputText("");
+        setSelectedDate("");
+        console.log("Document written with ID: ", docRef.id);
+        ToastAndroid.show("Your medicine has been added!", ToastAndroid.SHORT);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        ToastAndroid.show(e.message, ToastAndroid.SHORT);
+      }
+    }
+  };
 
   //button background color set
   useEffect(() => {
@@ -27,27 +55,30 @@ const Add = () => {
     setSelectedDate(formattedDate);
   };
 
-  const addMedicine = () => {
-    ToastAndroid.show("Your medicine has been added!", ToastAndroid.SHORT);
-  };
-
   return (
     <View style={styles.container}>
       <InputBar
         placeholder={"Medicine name"}
         onChange={(text) => setInputText(text)}
         value={inputText}
+        backgroundColor={"white"}
+        borderColor={"#EFEFEF"}
       />
-      <CustomCalendar
-        onDateChange={handleDateChange}
-        selectedDate={selectedDate}
-        today={today}
-        width={375}
-        height={375}
-      />
+      <View style={styles.calendarContainer}>
+        <CustomCalendar
+          onDateChange={handleDateChange}
+          selectedDate={selectedDate}
+          today={today}
+          width={350}
+          height={350}
+          selectedStartDate={selectedDate}
+        />
+      </View>
       <CustomButton
         buttonText={"Save"}
         backgroundColor={buttonColor}
+        color={buttonColor == "orange" ? "white" : "black"}
+        ariaDisabled={buttonColor == "orange" ? false : true}
         onPress={addMedicine}
         width={240}
         height={50}
