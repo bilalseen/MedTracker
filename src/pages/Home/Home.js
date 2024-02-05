@@ -22,10 +22,12 @@ const Home = ({ navigation }) => {
   const [search, setSearch] = useState("");
   const [user, setUser] = useState(null);
 
+  //current user set the user
   onAuthStateChanged(FIREBASE_AUTH, (authUser) => {
     setUser(authUser);
   });
 
+  // medicine data received
   const getMedicineData = async () => {
     if (user) {
       try {
@@ -48,6 +50,7 @@ const Home = ({ navigation }) => {
     }
   };
 
+  //the selected medicine is deleted
   const deleteMedicine = async (item) => {
     try {
       await deleteDoc(doc(db, user.uid, item.id));
@@ -57,6 +60,7 @@ const Home = ({ navigation }) => {
     }
   };
 
+  //when user and data downolad, call getMedicineData func
   useEffect(() => {
     if (user) {
       getMedicineData();
@@ -67,6 +71,7 @@ const Home = ({ navigation }) => {
     return <ErrorAnimation />;
   }
 
+  //navigate to medicine edit page
   const navigateToEditMedicine = (item) => {
     navigation.navigate("EditMedicine", { item });
   };
