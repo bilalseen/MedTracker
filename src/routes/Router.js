@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigation from "../routes/TabNavigation";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import PasswordReset from "../pages/PasswordReset";
 import EditProfile from "../pages/EditProfile";
 import EditMedicine from "../pages/EditMedicine";
 import PasswordChange from "../pages/PasswordChange";
@@ -53,6 +54,11 @@ function Router() {
           <Stack.Screen
             name="SignUp"
             component={SignUp}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PasswordReset"
+            component={PasswordReset}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
