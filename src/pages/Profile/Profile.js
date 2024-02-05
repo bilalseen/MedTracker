@@ -15,7 +15,7 @@ const Profile = ({ navigation }) => {
 
   useEffect(() => {
     setUser(auth.currentUser);
-  }, [auth.currentUser, MedData, user.displayName]);
+  }, [auth.currentUser]);
 
   const userSignOut = () => {
     const user = auth.currentUser;
@@ -44,6 +44,10 @@ const Profile = ({ navigation }) => {
 
   const navigateToEditProfile = () => {
     navigation.navigate("EditProfile");
+  };
+
+  const navigateToPasswordChange = () => {
+    navigation.navigate("PasswordChange");
   };
 
   return (
@@ -76,6 +80,7 @@ const Profile = ({ navigation }) => {
           size={20}
           title={"Change Password"}
           description={"Update and strengthen account security"}
+          onPress={navigateToPasswordChange}
         />
       </View>
       <View style={styles.preferencesContainer}>

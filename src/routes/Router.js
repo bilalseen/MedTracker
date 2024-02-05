@@ -5,6 +5,8 @@ import TabNavigation from "../routes/TabNavigation";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import EditProfile from "../pages/EditProfile";
+import EditMedicine from "../pages/EditMedicine";
+import PasswordChange from "../pages/PasswordChange";
 import FIREBASE_AUTH from "../services/config";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -28,6 +30,16 @@ function Router() {
           <Stack.Screen
             name="EditProfile"
             component={EditProfile}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PasswordChange"
+            component={PasswordChange}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="EditMedicine"
+            component={EditMedicine}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

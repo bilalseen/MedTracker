@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "name": "Parasetamol",
+    "expirationDate": "2024-02-15",
+    "outOfDate": true
+  },
+  {
+    "id": 2,
+    "name": "Ibuprofen",
+    "expirationDate": "2024-02-22",
+    "outOfDate": true
+  },
+  {
+    "id": 21,
+    "name": "Aferin",
+    "expirationDate": "2024-01-28",
+    "outOfDate": true
+  },
+  {
+    "id": 3,
+    "name": "Amoksisilin",
+    "expirationDate": "2024-04-05",
+    "outOfDate": false
+  },
+  {
+    "id": 4,
+    "name": "Aspirin",
+    "expirationDate": "2024-05-20",
+    "outOfDate": false
+  },
+  {
+    "id": 5,
+    "name": "Deksketoprofen",
+    "expirationDate": "2024-06-08",
+    "outOfDate": false
+  },
+  {
+    "id": 6,
+    "name": "Loratadin",
+    "expirationDate": "2024-07-25",
+    "outOfDate": false
+  },
+  {
+    "id": 7,
+    "name": "Omeprazol",
+    "expirationDate": "2024-08-12",
+    "outOfDate": false
+  },
+  {
+    "id": 8,
+    "name": "Mide Asidi",
+    "expirationDate": "2024-09-30",
+    "outOfDate": false
+  },
+  {
+    "id": 9,
+    "name": "Alerji Hapı",
+    "expirationDate": "2024-10-18",
+    "outOfDate": false
+  },
+  {
+    "id": 10,
+    "name": "Kalsiyum Tablet",
+    "expirationDate": "2024-11-03",
+    "outOfDate": false
+  },
+  {
+    "id": 11,
+    "name": "Vitamin C",
+    "expirationDate": "2024-12-22",
+    "outOfDate": false
+  },
+  {
+    "id": 12,
+    "name": "Omega-3",
+    "expirationDate": "2025-01-15",
+    "outOfDate": false
+  },
+  {
+    "id": 13,
+    "name": "Probiyotik",
+    "expirationDate": "2025-02-28",
+    "outOfDate": false
+  },
+  {
+    "id": 14,
+    "name": "Sirozil",
+    "expirationDate": "2025-03-20",
+    "outOfDate": false
+  },
+  {
+    "id": 15,
+    "name": "Panthenol",
+    "expirationDate": "2025-04-10",
+    "outOfDate": false
+  },
+  {
+    "id": 16,
+    "name": "Demir Takviyesi",
+    "expirationDate": "2025-05-05",
+    "outOfDate": false
+  },
+  {
+    "id": 17,
+    "name": "Melatonin",
+    "expirationDate": "2025-06-15",
+    "outOfDate": false
+  },
+  {
+    "id": 18,
+    "name": "Glukozamin",
+    "expirationDate": "2025-07-30",
+    "outOfDate": false
+  },
+  {
+    "id": 19,
+    "name": "Ketotifen",
+    "expirationDate": "2025-08-18",
+    "outOfDate": false
+  },
+  {
+    "id": 20,
+    "name": "Rutin",
+    "expirationDate": "2025-09-05",
+    "outOfDate": false
+  }
+]

@@ -1,8 +1,11 @@
 import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
-  input: {
+  container: {
     width: 300,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,

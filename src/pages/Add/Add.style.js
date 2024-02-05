@@ -6,4 +6,9 @@ export default styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 100,
   },
+  calendarContainer: {
+    backgroundColor: "white",
+    marginVertical: 50,
+    borderRadius: 10,
+  },
 });

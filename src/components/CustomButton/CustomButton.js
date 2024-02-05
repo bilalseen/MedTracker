@@ -10,9 +10,11 @@ const CustomButton = ({
   height,
   fontSize,
   color,
+  ariaDisabled,
 }) => {
   return (
     <TouchableOpacity
+      aria-disabled={ariaDisabled}
       onPress={onPress}
       style={[
         styles.buttonContainer,

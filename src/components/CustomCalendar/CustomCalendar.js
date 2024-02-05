@@ -9,16 +9,18 @@ const CustomCalendar = ({
   today,
   width,
   height,
+  selectedStartDate,
 }) => {
   return (
     <View style={styles.container}>
       <CalendarPicker
         onDateChange={onDateChange}
-        selectedDayColor={selectedDate ? "blue" : undefined}
+        selectedDayColor={selectedDate ? "green" : undefined}
         firstDay={1}
         width={width}
         height={height}
         minDate={today}
+        selectedStartDate={selectedStartDate}
       />
     </View>
   );
