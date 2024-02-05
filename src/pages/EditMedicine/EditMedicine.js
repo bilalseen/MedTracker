@@ -29,16 +29,19 @@ const EditMedicine = ({ route, navigation }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const today = moment();
 
+  //set the current user
   onAuthStateChanged(FIREBASE_AUTH, (authUser) => {
     setUser(authUser);
   });
 
+  //when user fetching open the page
   useEffect(() => {
     if (user) {
       getMedicineDetails();
     }
   }, [user]);
 
+  //medicine detail are fetching
   const getMedicineDetails = async () => {
     try {
       setError(false);
@@ -57,9 +60,9 @@ const EditMedicine = ({ route, navigation }) => {
     }
   };
 
+  //medicine update func
   const updateMedicine = async () => {
     const medicineRef = doc(db, user.uid, item.id);
-
     try {
       setError(false);
       await updateDoc(medicineRef, {
@@ -80,14 +83,17 @@ const EditMedicine = ({ route, navigation }) => {
     setSelectedDate(formattedDate);
   };
 
+  //when loading variable is true show the loading animation on the full page
   if (loading) {
     return <LoadingAnimation />;
   }
 
+  //when error variable is true show the error animation on the full page
   if (error) {
     return <ErrorAnimation />;
   }
 
+  //navigate to home screen
   const navigateToHome = () => {
     navigation.navigate("Home");
   };
