@@ -13,10 +13,12 @@ const Profile = ({ navigation }) => {
   const auth = FIREBASE_AUTH;
   const [user, setUser] = useState(auth.currentUser);
 
+  //when auth.currentUser download the page open page
   useEffect(() => {
     setUser(auth.currentUser);
   }, [auth.currentUser]);
 
+  //user sign out process started the func
   const userSignOut = () => {
     const user = auth.currentUser;
 
@@ -31,6 +33,7 @@ const Profile = ({ navigation }) => {
     }
   };
 
+  //if user have photo use the user photo but if have not the photo use the user icon
   const UserPhoto = () => {
     return user.photoURL ? (
       <Image
@@ -42,10 +45,12 @@ const Profile = ({ navigation }) => {
     );
   };
 
+  //navigate to profile editing page
   const navigateToEditProfile = () => {
     navigation.navigate("EditProfile");
   };
 
+  //navigate to password changing page
   const navigateToPasswordChange = () => {
     navigation.navigate("PasswordChange");
   };
