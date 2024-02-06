@@ -6,10 +6,10 @@ export default styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  header: {
-    alignItems: "center",
-    gap: 20,
-    marginBottom: 40,
+  headerContainer: {
+    alignItems: "flex-start",
+    gap: 10,
+    marginBottom: 30,
   },
   icon: {
     width: 100,
@@ -17,9 +17,14 @@ export default styles = StyleSheet.create({
     borderRadius: 10,
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 30,
+    fontWeight: "600",
+    width: 200,
+    color: "#213060",
   },
   titleText: {
-    fontSize: 14,
+    fontSize: 18,
+    width: 300,
+    color: "#213060",
   },
 });
