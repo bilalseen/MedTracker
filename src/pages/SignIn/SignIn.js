@@ -43,8 +43,8 @@ const SignIn = ({ navigation }) => {
           text={"Don't have an account?"}
           linkText={"Sign Up"}
           linkColor={"#213060"}
-          marginTop={40}
           onPress={navigateToSignUp}
+          marginTop={40}
         />
       </View>
     </ImageBackground>
