@@ -35,7 +35,7 @@ const updateProfileAndLog = async (user, values) => {
   }
 };
 
-const SignUpForm = ({ gap }) => {
+const SignUpForm = ({ gap, buttonBackgroundColor, buttonTextColor }) => {
   const onSubmit = (values) => {
     signUpUser(values);
   };
@@ -73,7 +73,8 @@ const SignUpForm = ({ gap }) => {
           <CustomButton
             buttonText={"Sign Up"}
             onPress={handleSubmit}
-            backgroundColor="green"
+            backgroundColor={buttonBackgroundColor}
+            buttonTextColor={buttonTextColor}
             width={240}
             height={50}
           />
