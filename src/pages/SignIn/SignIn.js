@@ -37,6 +37,7 @@ const SignIn = ({ navigation }) => {
           textColor={"gray"}
           borderColor={"gray"}
           width={250}
+          marginVertical={15}
         />
         <GoogleAuthButton text={"Sign in"} />
         <RegisterButton
