@@ -8,4 +8,10 @@ export default styles = StyleSheet.create({
     color: "gray",
     textDecorationLine: "underline",
   },
+  warningText: {
+    marginTop: 10,
+    marginLeft: 10,
+    color: "red",
+  },
+  
 });
