@@ -30,7 +30,6 @@ const SignIn = ({ navigation }) => {
           gap={25}
           onPress={navigateToPasswordReset}
           buttonBackgroundColor={"#213060"}
-          buttonTextColor={"white"}
         />
         <CustomLine
           text={"Or"}
