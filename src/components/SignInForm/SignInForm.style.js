@@ -5,7 +5,7 @@ export default styles = StyleSheet.create({
     alignItems: "center",
   },
   passwordForgotText: {
-    color: "#CE1040",
+    color: "gray",
     textDecorationLine: "underline",
   },
 });
