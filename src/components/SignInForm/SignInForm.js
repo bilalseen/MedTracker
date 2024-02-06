@@ -23,7 +23,12 @@ const signInUser = (values) => {
     });
 };
 
-const SignInForm = ({ gap, onPress }) => {
+const SignInForm = ({
+  gap,
+  onPress,
+  buttonBackgroundColor,
+  buttonTextColor,
+}) => {
   const onSubmit = (values) => {
     signInUser(values);
   };
@@ -53,7 +58,8 @@ const SignInForm = ({ gap, onPress }) => {
           <CustomButton
             buttonText={"Sign In"}
             onPress={handleSubmit}
-            backgroundColor="green"
+            backgroundColor={buttonBackgroundColor}
+            buttonTextColor={buttonTextColor}
             width={240}
             height={50}
           />
