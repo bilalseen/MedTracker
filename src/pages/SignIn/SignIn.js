@@ -20,17 +20,18 @@ const SignIn = ({ navigation }) => {
       style={{ width: "100%", height: "100%" }}
     >
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Image
-            style={styles.icon}
-            source={require("../../../assets/icons/icon.png")}
-          />
+        <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Welcome back to MedTracker</Text>
           <Text style={styles.titleText}>
             Ready to continue your health journey? Let's log in!
           </Text>
         </View>
-        <SignInForm gap={25} onPress={navigateToPasswordReset} />
+        <SignInForm
+          gap={25}
+          onPress={navigateToPasswordReset}
+          buttonBackgroundColor={"#213060"}
+          buttonTextColor={"white"}
+        />
         <CustomLine
           text={"Or"}
           textColor={"gray"}
@@ -39,7 +40,10 @@ const SignIn = ({ navigation }) => {
         />
         <GoogleAuthButton text={"Sign in"} />
         <RegisterButton
-          text={"Don't have an account? Sign Up"}
+          text={"Don't have an account?"}
+          linkText={"Sign Up"}
+          linkColor={"#213060"}
+          marginTop={40}
           onPress={navigateToSignUp}
         />
       </View>
