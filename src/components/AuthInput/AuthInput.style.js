@@ -21,4 +21,7 @@ export default styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 5,
   },
+  input: {
+    width: 220,
+  },
 });
