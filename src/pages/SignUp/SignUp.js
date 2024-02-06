@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { View, Text, ImageBackground } from "react-native";
 import React from "react";
 import styles from "./SignUp.style";
 import SignUpForm from "../../components/SignUpForm";
@@ -21,17 +15,18 @@ const SignUp = ({ navigation }) => {
       style={{ width: "100%", height: "100%" }}
     >
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Image
-            style={styles.icon}
-            source={require("../../../assets/icons/icon.png")}
-          />
+        <View style={styles.header}></View>
+        <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Welcome to MedTracker</Text>
           <Text style={styles.titleText}>
             Ready for a healthier you? Let's start now!
           </Text>
         </View>
-        <SignUpForm gap={25} />
+        <SignUpForm
+          gap={25}
+          buttonBackgroundColor={"#213060"}
+          buttonTextColor={"white"}
+        />
         <CustomLine
           text={"Or"}
           textColor={"gray"}
@@ -40,8 +35,11 @@ const SignUp = ({ navigation }) => {
         />
         <GoogleAuthButton text={"Sign up"} />
         <RegisterButton
-          text={"Do you have an account? Register"}
+          text={"Do you have an account? "}
+          linkText={"Sign In"}
           onPress={navigateToSignIn}
+          linkColor={"#213060"}
+          marginTop={40}
         />
       </View>
     </ImageBackground>
