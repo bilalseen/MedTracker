@@ -9,8 +9,8 @@ const CustomButton = ({
   width,
   height,
   fontSize,
-  color,
   ariaDisabled,
+  buttonTextColor,
 }) => {
   return (
     <TouchableOpacity
@@ -21,7 +21,9 @@ const CustomButton = ({
         { backgroundColor: backgroundColor, width: width, height: height },
       ]}
     >
-      <Text style={[styles.text, { fontSize: fontSize, color: color }]}>
+      <Text
+        style={[styles.text, { fontSize: fontSize, color: buttonTextColor }]}
+      >
         {buttonText}
       </Text>
     </TouchableOpacity>
