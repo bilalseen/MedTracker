@@ -5,7 +5,6 @@ export default styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 25,
   },
   line: {
     borderWidth: 1,
