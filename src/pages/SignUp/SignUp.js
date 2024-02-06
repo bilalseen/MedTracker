@@ -22,11 +22,7 @@ const SignUp = ({ navigation }) => {
             Ready for a healthier you? Let's start now!
           </Text>
         </View>
-        <SignUpForm
-          gap={25}
-          buttonBackgroundColor={"#213060"}
-          buttonTextColor={"white"}
-        />
+        <SignUpForm gap={25} buttonBackgroundColor={"#213060"} />
         <CustomLine
           text={"Or"}
           textColor={"gray"}
@@ -38,8 +34,8 @@ const SignUp = ({ navigation }) => {
         <RegisterButton
           text={"Do you have an account? "}
           linkText={"Sign In"}
-          onPress={navigateToSignIn}
           linkColor={"#213060"}
+          onPress={navigateToSignIn}
           marginTop={40}
         />
       </View>
