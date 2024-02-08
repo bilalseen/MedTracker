@@ -4,19 +4,22 @@ import styles from "./Profile.style";
 import CustomButton from "../../components/CustomButton";
 import FIREBASE_AUTH from "../../services/config";
 import { signOut } from "firebase/auth";
-import MedData from "../../../data.json";
 import AccountButton from "../../components/AccountButton";
 import ToggleButton from "../../components/ToggleButton";
 import MaterialIcons from "../../components/MaterialIcons";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Profile = ({ navigation }) => {
   const auth = FIREBASE_AUTH;
   const [user, setUser] = useState(auth.currentUser);
+  const [userDisplayName, setUserDisplayName] = useState(
+    auth.currentUser.displayName
+  );
 
   //when auth.currentUser download the page open page
-  useEffect(() => {
-    setUser(auth.currentUser);
-  }, [auth.currentUser]);
+  onAuthStateChanged(FIREBASE_AUTH, (authUser) => {
+    setUser(authUser);
+  });
 
   //user sign out process started the func
   const userSignOut = () => {
