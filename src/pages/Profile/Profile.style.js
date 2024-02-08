@@ -17,7 +17,13 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     paddingVertical: 10,
     borderRadius: 20,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
+    gap: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  profileInformation: {
+    flexDirection: "row",
     gap: 10,
   },
   profileImageContainer: {
@@ -27,7 +33,7 @@ export default styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F4F4F4",
-    borderRadius: 25
+    borderRadius: 25,
   },
   profileImage: {
     borderRadius: 50,
