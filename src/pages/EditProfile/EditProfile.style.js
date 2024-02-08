@@ -47,5 +47,6 @@ export default styles = StyleSheet.create({
     color: "red",
     marginTop: 5,
     marginLeft: 5,
+    maxWidth: 250,
   },
 });
