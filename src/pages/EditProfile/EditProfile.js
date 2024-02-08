@@ -1,22 +1,16 @@
-import { View, Image, Text, ToastAndroid } from "react-native";
 import React, { useState, useEffect } from "react";
+import { View, Image, Text, ToastAndroid } from "react-native";
+import { Formik } from "formik";
+import * as Yup from "yup";
 import styles from "./EditProfile.style";
 import CustomButton from "../../components/CustomButton";
-import FIREBASE_AUTH from "../../services/config";
 import MaterialIcons from "../../components/MaterialIcons";
-import { Formik } from "formik";
-import AuthInput from "../../components/AuthInput";
 import InputBar from "../../components/InputBar";
-import { updateProfile } from "firebase/auth";
-import firebase from "firebase/app";
+import { updateProfile, updateEmail, getAuth } from "firebase/auth";
 
 const EditProfile = ({ navigation }) => {
-  const auth = FIREBASE_AUTH;
+  const auth = getAuth();
   const [user, setUser] = useState(auth.currentUser);
-  const [nameInputBorderColor, setNameInputBorderColor] = useState("white");
-  const [emailInputBorderColor, setEmailInputBorderColor] = useState("white");
-  const [phoneNumberInputBorderColor, setPhoneNumberBorderColor] =
-    useState("white");
 
   useEffect(() => {
     setUser(auth.currentUser);
@@ -36,35 +30,21 @@ const EditProfile = ({ navigation }) => {
   };
 
   const updateUserProfile = async (values) => {
-    if (!values.displayName) {
-      setNameInputBorderColor("red");
-      ToastAndroid.show("Name required!", ToastAndroid.SHORT);
-    } else if (!values.email) {
-      setEmailInputBorderColor("red");
-      ToastAndroid.show("Email required!", ToastAndroid.SHORT);
-    } else {
-      try {
-        await updateProfile(user, {
-          displayName: values.displayName,
-          email: values.email,
-          photoURL: user.photoURL,
-        });
+    const auth = getAuth();
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: values.displayName,
+        phoneNumber: values.phoneNumber,
+      });
 
-        if (values.phoneNumber && values.phoneNumber !== user.phoneNumber) {
-          const credential = firebase.auth.PhoneAuthProvider.credential(
-            verificationId,
-            verificationCode
-          );
-          await user.updatePhoneNumber(credential);
-        }
-
-        console.log("User profile updated successfully:", user);
-
-        navigateToProfile();
-        ToastAndroid.show("Profile updated!", ToastAndroid.SHORT);
-      } catch (updateError) {
-        console.error("Error updating user profile:", updateError);
-      }
+      navigateToProfile();
+      ToastAndroid.show("Profile updated!", ToastAndroid.SHORT);
+    } catch (updateError) {
+      console.error("Error updating user profile:", updateError);
+      ToastAndroid.show(
+        `"Error updating user profile ${updateError}`,
+        ToastAndroid.SHORT
+      );
     }
   };
 
@@ -88,14 +68,30 @@ const EditProfile = ({ navigation }) => {
         initialValues={{
           displayName: user.displayName,
           email: user.email,
-          phoneNumber: user.phoneNumber,
+          phoneNumber: user.phoneNumber || "",
         }}
         onSubmit={(values) => {
           updateUserProfile(values);
-          console.log(values);
         }}
+        validationSchema={Yup.object().shape({
+          displayName: Yup.string().required("Name field cannot be empty!"),
+          email: Yup.string()
+            .email("Enter a valid email")
+            .required("Email field cannot be empty"),
+          phoneNumber: Yup.string().min(
+            10,
+            "Phone number must be at least 10 digits long"
+          ),
+        })}
       >
-        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+        }) => (
           <View style={styles.inputContainer}>
             <View>
               <Text style={styles.titleText}>Edit Profile</Text>
@@ -104,62 +100,47 @@ const EditProfile = ({ navigation }) => {
               <InputBar
                 value={values.displayName}
                 backgroundColor={"white"}
-                onChange={(text) => {
-                  handleChange("displayName")(text);
-                  setNameInputBorderColor("white");
-                }}
-                borderColor={nameInputBorderColor}
-                keyboardType={"username"}
+                onChange={handleChange("displayName")}
+                borderColor={
+                  touched.displayName && errors.displayName ? "red" : "white"
+                }
               />
-              <Text
-                style={[
-                  styles.warningText,
-                  {
-                    display:
-                      nameInputBorderColor === "white" ? "none" : "hidden",
-                  },
-                ]}
-              >
-                Name required!!!
-              </Text>
+              {touched.displayName && errors.displayName ? (
+                <Text style={styles.warningText}>{errors.displayName}</Text>
+              ) : null}
             </View>
             <View>
               <InputBar
                 value={values.email}
                 backgroundColor={"white"}
-                onChange={(text) => {
-                  handleChange("email")(text);
-                  setEmailInputBorderColor("white");
-                }}
-                borderColor={emailInputBorderColor}
+                onChange={handleChange("email")}
+                borderColor={touched.email && errors.email ? "red" : "white"}
                 keyboardType={"email-address"}
               />
-              <Text
-                style={[
-                  styles.warningText,
-                  {
-                    display:
-                      emailInputBorderColor === "white" ? "none" : "hidden",
-                  },
-                ]}
-              >
-                Email required!!!
-              </Text>
+              {touched.email && errors.email ? (
+                <Text style={styles.warningText}>{errors.email}</Text>
+              ) : null}
             </View>
-            <InputBar
-              value={values.phoneNumber}
-              backgroundColor={"white"}
-              onChange={handleChange("phoneNumber")}
-              placeholder={values.phoneNumber ? "" : "Add your phone number"}
-              borderColor={phoneNumberInputBorderColor}
-              keyboardType={"visible-password"}
-            />
+            <View>
+              <InputBar
+                value={values.phoneNumber}
+                backgroundColor={"white"}
+                onChange={handleChange("phoneNumber")}
+                placeholder={values.phoneNumber ? "" : "Add your phone number"}
+                borderColor={errors.phoneNumber ? "red" : "white"}
+                keyboardType={"phone-pad"}
+              />
+              {errors.phoneNumber ? (
+                <Text style={styles.warningText}>{errors.phoneNumber}</Text>
+              ) : null}
+            </View>
             <View style={styles.buttonContainer}>
               <CustomButton
                 buttonText={"Update Profile"}
                 onPress={handleSubmit}
-                backgroundColor="black"
-                color={"white"}
+                backgroundColor="#213060"
+                buttonTextColor={"white"}
+                ariaDisabled={false}
                 width={240}
                 height={50}
               />
