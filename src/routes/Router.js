@@ -5,6 +5,7 @@ import TabNavigation from "../routes/TabNavigation";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import PasswordReset from "../pages/PasswordReset";
+import ProfileInformation from "../pages/ProfileInformation";
 import EditProfile from "../pages/EditProfile";
 import EditMedicine from "../pages/EditMedicine";
 import PasswordChange from "../pages/PasswordChange";
@@ -26,6 +27,11 @@ function Router() {
           <Stack.Screen
             name="TabNavigation"
             component={TabNavigation}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProfileInformation"
+            component={ProfileInformation}
             options={{ headerShown: false }}
           />
           <Stack.Screen
