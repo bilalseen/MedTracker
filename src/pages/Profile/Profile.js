@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.style";
 import CustomButton from "../../components/CustomButton";
@@ -58,17 +58,33 @@ const Profile = ({ navigation }) => {
     navigation.navigate("PasswordChange");
   };
 
+  const navigateToProfileInformation = () => {
+    navigation.navigate("ProfileInformation");
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.profileContainer}>
-        <View style={styles.profileImageContainer}>
-          <UserPhoto />
+      <TouchableWithoutFeedback onPress={navigateToProfileInformation}>
+        <View style={styles.profileContainer}>
+          <View style={styles.profileInformation}>
+            <View style={styles.profileImageContainer}>
+              <UserPhoto />
+            </View>
+
+            <View style={styles.profileTextContainer}>
+              <Text style={styles.profileName}>{user.displayName}</Text>
+              <Text style={styles.profileEmail}>{user.email}</Text>
+            </View>
+          </View>
+
+          <MaterialIcons
+            name={"chevron-right"}
+            size={20}
+            color={"gray"}
+            style={styles.arrowIcon}
+          />
         </View>
-        <View style={styles.profileTextContainer}>
-          <Text style={styles.profileName}>{user.displayName}</Text>
-          <Text style={styles.profileEmail}>{user.email}</Text>
-        </View>
-      </View>
+      </TouchableWithoutFeedback>
 
       <View style={styles.generalContainer}>
         <Text style={styles.titleText}>General</Text>
