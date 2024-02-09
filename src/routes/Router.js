@@ -49,6 +49,11 @@ function Router() {
             component={EditMedicine}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="PasswordReset"
+            component={PasswordReset}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
