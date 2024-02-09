@@ -11,13 +11,15 @@ const PasswordReset = ({ navigation }) => {
   const [find, setFind] = useState(false);
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
+  const [emailCount, setEmailCount] = useState(0);
 
   const auth = getAuth();
   const sendResetEmail = () => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        //email send animation played
+        //email finding animation played
         setFind(true);
+        setEmailCount(emailCount + 1);
         const timeout = setTimeout(() => {
           setIsDone(true);
         }, 3000);
@@ -26,11 +28,18 @@ const PasswordReset = ({ navigation }) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessage(true);
-        console.log(error.message);
-        console.log(email);
+
         // ..
       });
   };
+
+  //when emaiCounter is equal to 3 emailCounter set the 0 for 5 minutes after and resend text change to check email text
+  if (emailCount == 3) {
+    setEmailCount(emailCount + 1);
+    const timeout = setTimeout(() => {
+      setEmailCount(0);
+    }, 300000);
+  }
 
   //navigate to sign in page
   const navigateToSignIn = () => {
@@ -57,21 +66,38 @@ const PasswordReset = ({ navigation }) => {
         <CustomButton
           onPress={navigateToSignIn}
           buttonText={"Sign In"}
-          color={email.length > 0 ? "white" : "gray"}
-          backgroundColor={"#0e77dd"}
+          buttonTextColor={"white"}
+          backgroundColor={"#213060"}
           width={200}
           height={50}
-          ariaDisabled={email.length > 0 ? false : true}
+          ariaDisabled={email.length > 0 || emailCount >= 3 ? false : true}
         />
-        <View style={styles.resendContainer}>
-          <Text>Didn't receive the link? </Text>
-          <TouchableOpacity onPress={sendResetEmail}>
-            <Text style={styles.resendText}>Resend</Text>
-          </TouchableOpacity>
-        </View>
+        {emailCount <= 3 ? (
+          <View style={styles.resendContainer}>
+            <Text>Didn't receive the link? </Text>
+            <TouchableOpacity
+              onPress={() => {
+                if (emailCount < 3) {
+                  sendResetEmail();
+                }
+              }}
+            >
+              <Text style={styles.resendText}>Resend</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={styles.resendWarningContainer}>
+            <Text style={styles.reSendWarningText}>
+              Please wait before sending any more email reset requests. Please
+              check your email inbox.{" "}
+            </Text>
+          </View>
+        )}
       </View>
     );
-  } else if (find) {
+  }
+
+  if (find) {
     //find animation play only 3 second
     return (
       <LottieView
@@ -115,8 +141,8 @@ const PasswordReset = ({ navigation }) => {
       <CustomButton
         onPress={sendResetEmail}
         buttonText={"Send Email"}
-        color={email.length > 0 ? "white" : "gray"}
-        backgroundColor={"#2D2D2D"}
+        buttonTextColor={email.length > 0 ? "white" : "black"}
+        backgroundColor={email.length > 0 ? "#213060" : "gray"}
         width={200}
         height={50}
         ariaDisabled={email.length > 0 ? false : true}
