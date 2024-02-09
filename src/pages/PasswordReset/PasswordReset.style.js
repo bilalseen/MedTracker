@@ -43,4 +43,15 @@ export default styles = StyleSheet.create({
     alignItems: "center",
   },
   resendText: { color: "#213060", fontWeight: "600" },
+  resendWarningContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  reSendWarningText: {
+    color: "red",
+    fontWeight: "600",
+    maxWidth: 300,
+    textAlign: "center",
+  },
 });
