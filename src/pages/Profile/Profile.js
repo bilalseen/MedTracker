@@ -62,6 +62,10 @@ const Profile = ({ navigation }) => {
     navigation.navigate("ProfileInformation");
   };
 
+  const navigateToPasswordReset = () => {
+    navigation.navigate("PasswordReset");
+  };
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={navigateToProfileInformation}>
@@ -105,6 +109,15 @@ const Profile = ({ navigation }) => {
           title={"Change Password"}
           description={"Update and strengthen account security"}
           onPress={navigateToPasswordChange}
+        />
+        <AccountButton
+          iconName={"lock"}
+          iconColor={"#4286FF"}
+          iconBackgroundColor={"#EDF2FF"}
+          size={20}
+          title={"Password Reset"}
+          description={"Email containing instructions to reset your password"}
+          onPress={navigateToPasswordReset}
         />
       </View>
       <View style={styles.preferencesContainer}>
