@@ -14,6 +14,7 @@ import {
 } from "../../services/dbConfig";
 import FIREBASE_AUTH from "../../services/config";
 import { onAuthStateChanged } from "@firebase/auth";
+import ConfirmationPopup from "../../components/ConfirmationPopup";
 
 const Home = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,8 @@ const Home = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState(null);
+  const [isAlertHide, setAlertHide] = useState(false);
+  const [deletingItem, setDeletingItem] = useState("");
 
   //current user set the user
   onAuthStateChanged(FIREBASE_AUTH, (authUser) => {
@@ -55,9 +58,15 @@ const Home = ({ navigation }) => {
     try {
       await deleteDoc(doc(db, user.uid, item.id));
       await getMedicineData();
+      setAlertHide(false);
     } catch (err) {
       console.log("İlaç silme hatası: " + err);
     }
+  };
+
+  const onDeleteMedicinePress = (item) => {
+    setAlertHide(true); // Popup'ı göster
+    setDeletingItem(item); // Silinecek öğeyi sakla
   };
 
   //when user and data downolad, call getMedicineData func
@@ -90,7 +99,7 @@ const Home = ({ navigation }) => {
           renderItem={({ item }) => (
             <MedCard
               item={item}
-              onDeletePress={deleteMedicine}
+              onDeletePress={() => onDeleteMedicinePress(item)}
               onNavigatePress={navigateToEditMedicine}
             />
           )}
@@ -99,6 +108,16 @@ const Home = ({ navigation }) => {
           style={styles.medFlatList}
         />
       )}
+      <ConfirmationPopup
+        isAlertHide={isAlertHide}
+        closePopUp={() => setAlertHide(false)}
+        deleteMedicine={() => deleteMedicine(deletingItem)}
+        item={deletingItem}
+        titleText={"Delete Medication"}
+        descriptionText={`Are you sure you want to delete this medication? This action cannot be undone.`}
+        cancelText={"Cancel"}
+        confirmText={"Delete Medicine"}
+      />
     </View>
   );
 };
