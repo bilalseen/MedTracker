@@ -9,20 +9,29 @@ const CustomButton = ({
   width,
   height,
   fontSize,
+  fontWeight,
   ariaDisabled,
   buttonTextColor,
+  shadowVisible,
 }) => {
   return (
     <TouchableOpacity
       aria-disabled={ariaDisabled}
       onPress={onPress}
       style={[
-        styles.buttonContainer,
+        shadowVisible ? styles.buttonContainerShadow : styles.buttonContainer,
         { backgroundColor: backgroundColor, width: width, height: height },
       ]}
     >
       <Text
-        style={[styles.text, { fontSize: fontSize, color: buttonTextColor }]}
+        style={[
+          styles.text,
+          {
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: buttonTextColor,
+          },
+        ]}
       >
         {buttonText}
       </Text>
