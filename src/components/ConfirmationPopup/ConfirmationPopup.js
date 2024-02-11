@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
 const ConfirmationPopup = ({
@@ -20,6 +20,11 @@ const ConfirmationPopup = ({
       }, 1000);
     }
   }
+
+  useEffect(() => {
+    setCount(5);
+    console.log("counter");
+  }, [isAlertHide]);
 
   return (
     <View style={styles.centeredView}>
