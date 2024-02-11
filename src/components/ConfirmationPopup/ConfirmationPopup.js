@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { Modal, Text, Pressable, View } from "react-native";
+import styles from "./ConfirmationPopup.style";
 
 const ConfirmationPopup = ({
   isAlertHide,
@@ -23,19 +24,15 @@ const ConfirmationPopup = ({
 
   useEffect(() => {
     setCount(5);
-    console.log("counter");
   }, [isAlertHide]);
 
   return (
     <View style={styles.centeredView}>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={isAlertHide}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
+        onRequestClose={closePopUp}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -59,7 +56,7 @@ const ConfirmationPopup = ({
                   styles.buttonConfirm,
                   {
                     backgroundColor: count == 0 ? "white" : "gray",
-                    borderColor: count == 0 ? "red" : "gray",
+                    borderColor: count == 0 ? "#e03131" : "gray",
                   },
                 ]}
                 onPress={() => {
@@ -72,7 +69,7 @@ const ConfirmationPopup = ({
                 <Text
                   style={[
                     styles.confirmText,
-                    { color: count == 0 ? "red" : "white" },
+                    { color: count == 0 ? "#e03131" : "white" },
                   ]}
                 >
                   {count == 0 ? confirmText : `${confirmText} (${count})`}
@@ -85,67 +82,5 @@ const ConfirmationPopup = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  modalView: {
-    width: 350,
-    height: 250,
-    backgroundColor: "white",
-    borderRadius: 20,
-    gap: 30,
-    padding: 35,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  textStyle: {
-    color: "#213060",
-    textAlign: "center",
-    fontWeight: "600",
-  },
-  title: {
-    fontSize: 20,
-  },
-  description: {
-    fontSize: 12,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    shadowColor: "#000",
-    gap: 30,
-  },
-  button: {
-    borderRadius: 10,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonCancel: {
-    backgroundColor: "#213060",
-  },
-  cancelText: {
-    color: "white",
-    fontWeight: "600",
-  },
-  buttonConfirm: {
-    backgroundColor: "white",
-    borderColor: "#e9ecef",
-    borderWidth: 1,
-  },
-  confirmText: {
-    fontWeight: "600",
-  },
-});
 
 export default ConfirmationPopup;
