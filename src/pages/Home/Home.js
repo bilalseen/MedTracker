@@ -85,6 +85,10 @@ const Home = ({ navigation }) => {
     navigation.navigate("EditMedicine", { item });
   };
 
+  const navigateToDetailMedicine = (item) => {
+    navigation.navigate("DetailMedicine", { item });
+  };
+
   return (
     <View style={styles.container}>
       <SearchBar
@@ -100,7 +104,8 @@ const Home = ({ navigation }) => {
             <MedCard
               item={item}
               onDeletePress={() => onDeleteMedicinePress(item)}
-              onNavigatePress={navigateToEditMedicine}
+              onEditPress={navigateToEditMedicine}
+              onDetailPress={() => navigateToDetailMedicine(item)}
             />
           )}
           keyExtractor={(item) => item.id}
