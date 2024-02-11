@@ -1,11 +1,16 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React from "react";
 import styles from "./MedCard.style";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import MaterialIcons from "../MaterialIcons";
 
-const MedCard = ({ item, onDeletePress, onNavigatePress }) => {
+const MedCard = ({ item, onDeletePress, onEditPress, onDetailPress }) => {
   const swipteLeft = () => {
     return (
       <View style={styles.deleteButtonContainer}>
@@ -24,7 +29,7 @@ const MedCard = ({ item, onDeletePress, onNavigatePress }) => {
       <View style={styles.deleteButtonContainer}>
         <TouchableOpacity
           style={styles.deleteButton}
-          onPress={() => onNavigatePress(item)}
+          onPress={() => onEditPress(item)}
         >
           <MaterialIcons name={"edit"} size={30} color={"orange"} />
         </TouchableOpacity>
@@ -38,34 +43,36 @@ const MedCard = ({ item, onDeletePress, onNavigatePress }) => {
         renderLeftActions={swipteLeft}
         renderRightActions={swipteRight}
       >
-        <View
-          style={[
-            styles.container,
-            {
-              // borderColor: `${item.outOfDate ? "red" : "green"}`,
-              shadowColor: `${item.outOfDate ? "#CE1040" : "#4286FF"}`,
-            },
-          ]}
-        >
-          <Text
+        <TouchableWithoutFeedback onPress={onDetailPress}>
+          <View
             style={[
-              styles.name,
-              { color: `${item.outOfDate ? "#CE1040" : "#4286FF"}` },
-            ]}
-          >
-            {item.name}
-          </Text>
-          <Text
-            style={[
-              styles.date,
+              styles.container,
               {
-                color: `${item.outOfDate ? "#CE1040" : "#4286FF"}`,
+                // borderColor: `${item.outOfDate ? "red" : "green"}`,
+                shadowColor: `${item.outOfDate ? "#CE1040" : "#4286FF"}`,
               },
             ]}
           >
-            {item.date}
-          </Text>
-        </View>
+            <Text
+              style={[
+                styles.name,
+                { color: `${item.outOfDate ? "#CE1040" : "#4286FF"}` },
+              ]}
+            >
+              {item.name}
+            </Text>
+            <Text
+              style={[
+                styles.date,
+                {
+                  color: `${item.outOfDate ? "#CE1040" : "#4286FF"}`,
+                },
+              ]}
+            >
+              {item.date}
+            </Text>
+          </View>
+        </TouchableWithoutFeedback>
       </Swipeable>
     </GestureHandlerRootView>
   );
