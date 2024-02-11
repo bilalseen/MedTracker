@@ -9,6 +9,7 @@ import ProfileInformation from "../pages/ProfileInformation";
 import EditProfile from "../pages/EditProfile";
 import EditMedicine from "../pages/EditMedicine";
 import PasswordChange from "../pages/PasswordChange";
+import DetailMedicine from "../pages/DetailMedicine";
 import FIREBASE_AUTH from "../services/config";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -27,6 +28,11 @@ function Router() {
           <Stack.Screen
             name="TabNavigation"
             component={TabNavigation}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="DetailMedicine"
+            component={DetailMedicine}
             options={{ headerShown: false }}
           />
           <Stack.Screen
