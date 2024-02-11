@@ -9,6 +9,15 @@ export default styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonContainerShadow: {
+    width: 240,
+    height: 50,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
