@@ -8,6 +8,7 @@ import CustomButton from "../CustomButton";
 import FIREBASE_AUTH from "../../services/config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import * as Yup from "yup";
+import { db, collection, addDoc } from "../../services/dbConfig";
 
 const SignUpForm = ({ gap, buttonBackgroundColor, buttonTextColor }) => {
   const [firebaseError, setFirebaseError] = useState("");
@@ -23,6 +24,7 @@ const SignUpForm = ({ gap, buttonBackgroundColor, buttonTextColor }) => {
         const user = userCredential.user;
         console.log(user.displayName);
         updateProfileAndLog(user, values);
+        addUserToFirestore(user, values);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -35,6 +37,21 @@ const SignUpForm = ({ gap, buttonBackgroundColor, buttonTextColor }) => {
       });
   };
 
+  const addUserToFirestore = async (userId, values) => {
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        name: values.fullName,
+        email: values.email,
+        uid: userId,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error(
+        "Firestore'a kullanıcı eklenirken bir hata oluştu:",
+        e.message
+      );
+    }
+  };
   const updateProfileAndLog = async (user, values) => {
     try {
       await updateProfile(user, {
