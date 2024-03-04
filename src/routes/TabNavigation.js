@@ -2,9 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import Add from "../pages/Add";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
+import TopTabNavigation from "./TopTabNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +17,7 @@ function TabNavigation() {
 
           if (route.name === "Home") {
             iconName = focused ? "home" : "home-outline";
-          } else if (route.name === "Add") {
+          } else if (route.name === "Add Med") {
             iconName = focused ? "add-circle" : "add-circle-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "person" : "person-outline";
@@ -35,7 +35,13 @@ function TabNavigation() {
         component={Home}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="Add" component={Add} options={{ headerShown: false }} />
+      <Tab.Screen
+        name="Add Med"
+        component={TopTabNavigation}
+        options={{
+          title: "Awesome app",
+        }}
+      />
       <Tab.Screen
         name="Profile"
         component={Profile}
