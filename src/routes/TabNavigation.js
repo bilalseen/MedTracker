@@ -35,13 +35,7 @@ function TabNavigation() {
         component={Home}
         options={{ headerShown: false }}
       />
-      <Tab.Screen
-        name="Add Med"
-        component={TopTabNavigation}
-        options={{
-          title: "Awesome app",
-        }}
-      />
+      <Tab.Screen name="Add Med" component={TopTabNavigation} />
       <Tab.Screen
         name="Profile"
         component={Profile}
